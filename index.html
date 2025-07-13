@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Frase</title>
+  <link rel="manifest" href="manifest.json" />
+  <link rel="icon" type="image/png" href="icon-192.png">
+  <meta name="theme-color" content="#000000"/>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      height: 100vh;
+      background-image: url('https://cdn.pixabay.com/photo/2015/07/27/22/52/road-863661_1280.jpg');
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      color: white;
+      padding: 20px;
+      box-sizing: border-box;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.7);
+    }
+    #frase {
+      font-size: 22px;
+      line-height: 1.5;
+      max-width: 90vw;
+    }
+  </style>
+</head>
+<body>
+  <p id="frase"></p>
+  <script>
+    const frases = ["Hoy es un nuevo comienzo", "Cree en ti más que en nadie", "El esfuerzo vence al talento"];
+    const frase = frases[Math.floor(Math.random() * frases.length)];
+    document.getElementById("frase").textContent = frase;
+  </script>
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('service-worker.js')
+          .then(reg => console.log('✅ Service Worker registrado:', reg.scope))
+          .catch(err => console.error('❌ Error registrando Service Worker:', err));
+      });
+    }
+  </script>
+</body>
+</html>
